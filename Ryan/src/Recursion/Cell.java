@@ -19,8 +19,8 @@ public class Cell extends JPanel implements MouseListener{
 	public static boolean start = false;
 	public Cell(boolean inCell1){
 		try{
-			mCat = ImageIO.read(new File("C:/Users/Ryan/workspace/Ryan/src/mCat.png"));
-			darl = ImageIO.read(new File("C:/Users/Ryan/workspace/Ryan/src/darlington.png"));
+			mCat = ImageIO.read(new File("C:/Users/Ryan/workspace/Ryan/resources/mCat.png"));
+			darl = ImageIO.read(new File("C:/Users/Ryan/workspace/Ryan/resources/darlington.png"));
 		}
 		catch(Exception e){
 		}

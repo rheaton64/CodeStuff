@@ -28,12 +28,6 @@ public class HashMap<T, K> implements Map<T, K>{
 	public void reSize(){
 		
 		System.out.println("resize = "+resize);
-			/*if(array[i] != null){
-				resize++;
-				System.out.println(resize);
-				System.out.println("rs");
-				check[i] = true;
-			}*/
 			if(resize >= array.length*0.75){
 				LinkedList[] array2 = new LinkedList[array.length*2];
 				hasher = array2.length;
