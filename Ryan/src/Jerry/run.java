@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-
+//ADD exception if score not found
 public class run {
 	static ArrayList<String> codes = new ArrayList<String>();
 	static ArrayList<String> scores = new ArrayList<String>();
