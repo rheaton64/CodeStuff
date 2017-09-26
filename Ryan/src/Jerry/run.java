@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 //ADD exception if score not found
 public class run {
 	static ArrayList<String> codes = new ArrayList<String>();
@@ -17,10 +18,12 @@ public class run {
 	static BufferedReader sReader;
 	static boolean newCont = true;
 	static Scanner scan = new Scanner(System.in);
+	static int zip;
+	static String oCont;
 	public static void main(String args[]){
 		//Creating BufferedReaders
-		File codesFile = new File("src/Jerry/Contractor Zip Codes.xlsx - Sheet1.csv");
-		File scoresFile = new File("src/Jerry/contractor_reportcard.xls - Worksheet1.csv");
+		File codesFile = new File("Codes.csv");
+		File scoresFile = new File("Scores.csv");
 		//Scanning files
 		try {
 			
@@ -84,8 +87,13 @@ public class run {
 		boolean go = true;
 		while(go == true){
 			ArrayList<Contractor> cont = new ArrayList<Contractor>();
-			System.out.println("Enter zip code");
-			int zip = scan.nextInt();
+			String Szip = JOptionPane.showInputDialog("Enter zip code");
+			if (Szip != null){
+			zip = Integer.parseInt(Szip);
+			}
+			else{
+				break;
+			}
 			for(int c = 0; c < contractors.size(); c++){
 				for(int n = 0; n < contractors.get(c).getCodes().size(); n++){
 					if(contractors.get(c).getCodes().get(n) == zip){
@@ -93,9 +101,19 @@ public class run {
 					}
 				}
 			}
+			//TODO - make string with other conts
 			if(cont.size() != 0){
 				Collections.sort(cont, new Sortbyscore());
 				Collections.reverse(cont);
+				if(cont.size() > 1){
+					System.out.println();
+					System.out.println("Other contractors:");
+					for(int i = 1; i < cont.size(); i++){
+						oCont = oCont+"<br>"+cont.get(i);
+					}
+				}
+				System.out.println(oCont);
+				JOptionPane.showMessageDialog(null, "<html>Recommended contractor:<br>"+cont.get(0)+"<br>Other contractors:<br>"+oCont.substring(8));
 				System.out.println();
 				System.out.println("Recommended contractor: ");
 				System.out.println(cont.get(0));
@@ -110,8 +128,10 @@ public class run {
 			else{
 				System.out.println();
 				System.out.println("No contractors found in that zip code");
+				JOptionPane.showMessageDialog(null, "No contractors found in this zip code");
 			}
 			System.out.println();
+			oCont = null;
 		}
 	}
 }
