@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
-//ADD exception if score not found
+//TODO - Not too important, but add exception if score not found
 public class run {
 	static ArrayList<String> codes = new ArrayList<String>();
 	static ArrayList<String> scores = new ArrayList<String>();
@@ -22,8 +22,14 @@ public class run {
 	static String oCont;
 	public static void main(String args[]){
 		//Creating BufferedReaders
+		//Export Filepaths
 		File codesFile = new File("Codes.csv");
 		File scoresFile = new File("Scores.csv");
+		//||| IMPORTANT |||
+		//Switch filepaths before exporting
+		//IDE Filepaths
+		//File scoresFile = new File("src/Jerry/Codes.csv");
+		//File scoresFile = new File("src/Jerry/Scores.csv");
 		//Scanning files
 		try {
 			
