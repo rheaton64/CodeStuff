@@ -23,13 +23,13 @@ public class run {
 	public static void main(String args[]){
 		//Creating BufferedReaders
 		//Export Filepaths
-		//File codesFile = new File("Codes.csv");
-		//File scoresFile = new File("Scores.csv");
+		File codesFile = new File("Codes.csv");
+		File scoresFile = new File("Scores.csv");
 		//||| IMPORTANT |||
 		//Switch filepaths before exporting
 		//IDE Filepaths
-		File codesFile = new File("src/Jerry/Codes.csv");
-		File scoresFile = new File("src/Jerry/Scores.csv");
+		//File codesFile = new File("src/Jerry/Codes.csv");
+		//File scoresFile = new File("src/Jerry/Scores.csv");
 		//Scanning files
 		try {
 			
@@ -117,7 +117,13 @@ public class run {
 					}
 				}
 				System.out.println(oCont);
-				JOptionPane.showMessageDialog(null, "<html>Recommended contractor:<br>"+cont.get(0)+"<br>Other contractors:<br>"+oCont.substring(8));
+				System.out.println(cont.get(0));
+				if(cont.size() > 1){
+					JOptionPane.showMessageDialog(null, "<html>Recommended contractor:<br>"+cont.get(0)+"<br>Other contractors:<br>"+oCont.substring(8));
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "<html>Recommended contractor:<br>"+cont.get(0));
+				}
 				System.out.println();
 				System.out.println("Recommended contractor: ");
 				System.out.println(cont.get(0));
