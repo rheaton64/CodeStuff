@@ -1,5 +1,7 @@
 package advStrProgProj;
 
+import java.util.ArrayList;
+
 //Ryan
 //Project 1 methods
 
@@ -19,6 +21,25 @@ public class proj1Methods {
 			}
 		}
 		return count+1;
+	}
+	public static double avgWords(String str){
+		ArrayList<Integer> nums = new ArrayList<>();
+		int begin = 0;
+		int count = 0;
+		while(begin < str.length()){
+			int end = str.indexOf(' ', begin);
+			if(end == -1){
+				end = str.length();
+			}
+			String word = str.substring(begin, end);
+			nums.add(word.length());
+			begin = end + 1;
+		}
+		double sum = 0;
+		for(int i = 0; i < nums.size(); i++){
+			sum += nums.get(i);
+		}
+		return sum/nums.size();
 	}
 }
 

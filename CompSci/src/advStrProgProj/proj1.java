@@ -5,6 +5,8 @@ package advStrProgProj;
 
 public class proj1 {
 	public static void main(String[] args) {
-		System.out.println("There are "+proj1Methods.wordsInSentence(proj1Methods.getInput())+" word in your sentence");
+		String str = proj1Methods.getInput();
+		System.out.println("There are "+proj1Methods.wordsInSentence(str)+" word in your sentence");
+		System.out.println("The average length of words in your sentence is "+proj1Methods.avgWords(str));
 	}
 }
