@@ -10,46 +10,56 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Maze extends JFrame{
+	public static int size = 0;
 	public static void main(String[] args) {
+		String sizeString = JOptionPane.showInputDialog("Enter side length for maze");
+		size  = Integer.parseInt(sizeString);
+		System.out.println(size);
 		Maze maze = new Maze();
 	}
 	//IF GRID SIZE IS CHANGED:
 	//change out of bounds test + starting position test + clear inCell for loop
 	Image mCat;
 	public static int mPosX = 0;
-	public static int mPosY = 9;
+	public static int mPosY;
 	public static int i = 0;
 	public static int x = 0;
 	public static int y = 0;
 	public static int i2 = 0;
 	public static int d = 3;
 	public static boolean inCell = false;
-	public static Cell[][] panel = new Cell[10][10];
-	public static int[][] wasNum = new int[10][10];
+	public static Cell[][] panel;
+	public static int[][] wasNum;
+	public static boolean[][] wasThere;
 	public Maze(){
-
+		panel = new Cell[size][size];
+		wasNum = new int[size][size];
+		wasThere = new boolean[size][size];
+		mPosY = size-1;
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(0, 0, 999, 999);
 		JPanel grid = new JPanel();
-		grid.setLayout(new GridLayout(10, 10));
-		for(x = 0;x < 10;x++){
-			for(y = 0;y < 10;y++){
-				//System.out.println(x+" "+y);
+		grid.setLayout(new GridLayout(size, size));
+		for(x = 0;x < size;x++){
+			for(y = 0;y < size;y++){
+				System.out.println(x+" "+y);
+				System.out.println(panel.length);
 				panel[x][y] = new Cell(inCell);
 				panel[x][y].repaint();
 			}
 		}
 
-		for(int n3 = 0;n3 < 10;n3++){
-			for(int n4 = 0;n4 < 10;n4++){
+		for(int n3 = 0;n3 < size;n3++){
+			for(int n4 = 0;n4 < size;n4++){
 				grid.add(panel[n3][n4]);
 			}
 		}
-		panel[9][0].setInCell(true);
+		panel[size-1][0].setInCell(true);
 
 
 
@@ -59,7 +69,7 @@ public class Maze extends JFrame{
 		boolean startPF = false;
 		while(startPF == false){
 			System.out.print("");
-			if(panel[9][0].getStart() == true){
+			if(panel[size-1][0].getStart() == true){
 				startPF = true;
 				while(scan == true){
 					pathfinder(d);
@@ -75,7 +85,6 @@ public class Maze extends JFrame{
 		}
 	}
 	public static boolean scan = true;
-	public static boolean[][] wasThere = new boolean[10][10];
 	public static int prio = 0;
 	public static int pStart = 1;
 	public static int pCycle= 0;
@@ -100,7 +109,7 @@ public class Maze extends JFrame{
 			System.out.println(dTest[d]+" "+d);
 			pathfinder(d-1);
 		}
-		if(panel[mPosY][9].getInCell() == true && d == 2){
+		if(panel[mPosY][size-1].getInCell() == true && d == 2){
 			dTest[d] = false;
 			d--;
 		}
@@ -117,7 +126,7 @@ public class Maze extends JFrame{
 			System.out.println(dTest[d]+" "+d);
 			pathfinder(d-1);
 		}
-		if(panel[9][mPosX].getInCell() == true && d == 1){
+		if(panel[size-1][mPosX].getInCell() == true && d == 1){
 			dTest[d] = false;
 			d--;
 		}
@@ -300,8 +309,8 @@ public class Maze extends JFrame{
 			System.out.println("pStart = "+pStart);
 			wasThere[mPosY][mPosX] = true;
 			wasNum[mPosY][mPosX]++;
-			for(int n = 0; n < 10;n++){
-				for(int n2 = 0;n2 < 10;n2++){
+			for(int n = 0; n < size;n++){
+				for(int n2 = 0;n2 < size;n2++){
 					panel[n][n2].setInCell(false);
 				}
 			}
